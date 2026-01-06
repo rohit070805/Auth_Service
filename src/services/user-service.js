@@ -1,6 +1,7 @@
 const { Model } = require('sequelize');
 const jwt = require('jsonwebtoken');
 const {JWTKEY} = require('../config/serverConfig');
+const bcrypt = require('bcrypt');
 const UserRepository = require('../repository/user-repository');
 class UserService{
     constructor(){
@@ -17,7 +18,7 @@ class UserService{
     }
     createToken(user){
             try {
-                const result = jwt.sign(user,JWTKEY,{expiresIn:'1h'});
+                const result = jwt.sign(user,JWTKEY,{expiresIn:'1d'});
                 return result;
             } catch (error) {
                 console.log("Sowmething went wrong in token createion");
@@ -32,6 +33,14 @@ class UserService{
                 console.log("Sowmething went wrong in token validation",error);
                 throw {error};
             }
+    }
+    checkPassword(userInputPlainPassword,enrcyptedPassword){
+        try {
+                return  bcrypt.compareSync(userInputPlainPassword,enrcyptedPassword);
+        } catch (error) {
+            console.log("Sowmething went wrong in [password Comparison",error);
+                throw {error};
+        }
     }
 }
 module.exports = UserService;
