@@ -17,6 +17,7 @@ class UserService{
                 throw {error};
             }
     }
+
     async signIn(userEmail,plainPassword){
         try {
             const user = await this.userRepository.getByEmail(userEmail);
@@ -27,6 +28,22 @@ class UserService{
             }
            const newJwt = this.createToken({email:user.email,id:user.id});
            return newJwt;
+        } catch (error) {
+             console.log("Something wrong in service layer");
+                throw {error};
+            }
+    }
+     async isAuthenticated(token){
+        try {
+            const response = this.verifyToken(token);
+            if(!response){
+                throw {error:"Token is not authenticated"};
+            }
+            const user = this.userRepository.getByID(response.id);
+            if(!user){
+                throw {error:"User with this token does not exist"};
+            }
+            return user.id;
         } catch (error) {
              console.log("Something wrong in service layer");
                 throw {error};
