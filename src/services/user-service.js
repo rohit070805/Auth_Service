@@ -43,7 +43,8 @@ class UserService{
             if(!user){
                 throw {error:"User with this token does not exist"};
             }
-            return user.id;
+            console.log(response.id);
+            return response.id;
         } catch (error) {
              console.log("Something wrong in service layer");
                 throw {error};
