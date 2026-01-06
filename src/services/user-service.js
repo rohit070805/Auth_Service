@@ -39,7 +39,7 @@ class UserService{
             if(!response){
                 throw {error:"Token is not authenticated"};
             }
-            const user = this.userRepository.getByID(response.id);
+            const user =await this.userRepository.getByID(response.id);
             if(!user){
                 throw {error:"User with this token does not exist"};
             }
