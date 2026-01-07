@@ -9,6 +9,18 @@ const AuthValidate = (req,res,next)=>{
     }
     next();
 }
+const validateIsAdminRequest = (req,res,next)=>{
+    if(!req.body.userId){
+        res.status(400).json({
+            data:{},
+            message:'user id is Empty',
+            success:false,
+            err:{error:"Not all credentials provided"}
+        });
+    }
+    next();
+}
 module.exports={
-    AuthValidate:AuthValidate
+    AuthValidate:AuthValidate,
+    validateIsAdminRequest:validateIsAdminRequest
 };

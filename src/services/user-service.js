@@ -51,7 +51,6 @@ class UserService{
             }
     }
     
-    
     createToken(user){
             try {
                 const result = jwt.sign(user,JWTKEY,{expiresIn:'1d'});
@@ -76,6 +75,16 @@ class UserService{
         } catch (error) {
             console.log("Sowmething went wrong in [password Comparison",error);
                 throw {error};
+        }
+    }
+   async isAdmin(userId){
+        try {
+             const response = await this.userRepository.isAdmin(userId);
+             return response;
+        } catch (error) {
+            console.log("Something Wrong in Service layer");
+            throw error;
+            // 
         }
     }
 }
