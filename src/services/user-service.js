@@ -21,6 +21,18 @@ class UserService{
                 throw error;
             }
     }
+    async get(userid){
+            try {
+                const user = await this.userRepository.getByID(userid);
+                return user;
+            } catch (error) {
+                if(error.name == 'SequelizeValidationError'){
+                    throw error;
+                }
+                console.log("Something wrong in service layer");
+                throw error;
+            }
+    }
 
     async signIn(userEmail,plainPassword){
         try {
