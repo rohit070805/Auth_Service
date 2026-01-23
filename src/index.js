@@ -12,7 +12,7 @@ const {DB_SYNC} = require('./config/serverConfig');
 const prepareAndStartserver=async()=>{
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:true}));
-    app.use('/api',apiRoutes);
+    app.use('/authservice/api',apiRoutes);
 
 
 // User roles Asoosciation
