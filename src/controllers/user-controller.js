@@ -36,7 +36,7 @@ const get = async (req,res)=>{
             err:{}
         });
     } catch (error) {
-        return res.status(error.statusCode).json({
+        return res.status(500).json({
             data:{},
             message:error.message,
             success:false,
