@@ -1,13 +1,13 @@
 const express = require('express');
-const {PORT} = require('./config/serverConfig');
-const apiRoutes = require('./routes/index');
+const {PORT} = require('./src/config/serverConfig');
+const apiRoutes = require('./src/routes/index');
 const bodyParser = require('body-parser');
-const UserRepository = require('./repository/user-repository');
-const UserService = require('./services/user-service');
+const UserRepository = require('./src/repository/user-repository');
+const UserService = require('./src/services/user-service');
 const app = express();
-const db = require('./models/index');
-const {User,Role} = require('./models/index');
-const {DB_SYNC} = require('./config/serverConfig');
+const db = require('./src/models/index');
+const {User,Role} = require('./src/models/index');
+const {DB_SYNC} = require('./src/config/serverConfig');
 
 const prepareAndStartserver=async()=>{
     app.use(bodyParser.json());
