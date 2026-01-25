@@ -17,7 +17,7 @@ const create = async (req,res)=>{
             err:{}
         });
     } catch (error) {
-        return res.status(error.statusCode).json({
+        return res.status(error.statusCode || 500).json({
             data:{},
             message:error.message,
             success:false,
@@ -36,7 +36,7 @@ const get = async (req,res)=>{
             err:{}
         });
     } catch (error) {
-        return res.status(500).json({
+        return res.status(error.statusCode|| 500).json({
             data:{},
             message:error.message,
             success:false,
@@ -54,7 +54,7 @@ const signIn = async(req,res)=>{
             err:{}
         });
     } catch (error) {
-        return res.status(error.statusCode).json({
+        return res.status(error.statusCode || 500).json({
             data:{},
             message:error.message,
             success:false,

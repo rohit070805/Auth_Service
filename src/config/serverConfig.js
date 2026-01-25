@@ -4,6 +4,6 @@ const bcrypt = require('bcrypt');
 module.exports={
     PORT : process.env.PORT,
     SALT : bcrypt.genSaltSync(10),
-    JWTKEY: process.env.JWTKEY,
+    JWTKEY: process.env.JWT_KEY,
     DB_SYNC:process.env.DB_SYNC
 };
